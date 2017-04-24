@@ -1,3 +1,5 @@
+*.swp
+*.un~
 *.sublime-workspace
 .DS_Store
 build/

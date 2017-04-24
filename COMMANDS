@@ -1,0 +1,1 @@
+rm -rf build && mkdir build && rollup -g d3-dispatch:d3,d3-drag:d3,d3-interpolate:d3,d3-selection:d3,d3-transition:d3 -f umd -n d3 -o build/d3-brush-lite.js -- index.js; cp build/d3-brush-lite.js ~/projects/upload-network/
