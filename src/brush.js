@@ -307,7 +307,6 @@ function brush(dim) {
         dx,
         dy,
         moving,
-        shifting = signX && signY && event.shiftKey,
         lockX,
         lockY,
         point0 = mouse(that),
@@ -358,10 +357,6 @@ function brush(dim) {
 
     function moved() {
       var point1 = mouse(that);
-      if (shifting && !lockX && !lockY) {
-        if (Math.abs(point1[0] - point[0]) > Math.abs(point1[1] - point[1])) lockY = true;
-        else lockX = true;
-      }
       point = point1;
       moving = true;
       noevent();
@@ -443,10 +438,6 @@ function brush(dim) {
 
     function keydowned() {
       switch (event.keyCode) {
-        case 16: { // SHIFT
-          shifting = signX && signY;
-          break;
-        }
         case 18: { // ALT
           if (mode === MODE_HANDLE) {
             if (signX) e0 = e1 - dx * signX, w0 = w1 + dx * signX;
@@ -473,13 +464,6 @@ function brush(dim) {
 
     function keyupped() {
       switch (event.keyCode) {
-        case 16: { // SHIFT
-          if (shifting) {
-            lockX = lockY = shifting = false;
-            move();
-          }
-          break;
-        }
         case 18: { // ALT
           if (mode === MODE_CENTER) {
             if (signX < 0) e0 = e1; else if (signX > 0) w0 = w1;
